@@ -1,0 +1,10 @@
+.vs
+CodeDB
+VisualGDBCache
+*.VC.db
+*.VC.opendb
+*.old
+*.orig
+Debug
+Release
+
