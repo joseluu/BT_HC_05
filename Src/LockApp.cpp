@@ -57,9 +57,12 @@ void simpleTalk(){
 }
 
 void LockApp(void){
+
+	InitializeSerial();
 	HAL_StatusTypeDef statusReceive;
 	HAL_StatusTypeDef statusTransmit;
 
+	simpleTalk();
 	while (1){
 		char buffer[100];
 		statusReceive = HAL_UART_Receive(&huart1, (unsigned char*)buffer, 100, 1000);
