@@ -1,6 +1,6 @@
 #include "LockApp.h"
 #include "main.h"
-#include "stm32f3xx_hal.h"
+#include "stm32l4xx_hal.h"
 #include "Serial.h"
 #include "gpio.h"
 #include <cstring>

@@ -42,7 +42,7 @@
 /* Private define ------------------------------------------------------------*/
 
 #define MCO_Pin GPIO_PIN_0
-#define MCO_GPIO_Port GPIOF
+#define MCO_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_2
 #define VCP_TX_GPIO_Port GPIOA
 #define LOCK_M_Pin GPIO_PIN_11
@@ -55,6 +55,8 @@
 #define SWCLK_GPIO_Port GPIOA
 #define VCP_RX_Pin GPIO_PIN_15
 #define VCP_RX_GPIO_Port GPIOA
+#define LD3_Pin GPIO_PIN_3
+#define LD3_GPIO_Port GPIOB
 #define BT_KEY_Pin GPIO_PIN_5
 #define BT_KEY_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */

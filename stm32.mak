@@ -16,8 +16,8 @@ AR := $(TOOLCHAIN_ROOT)/bin/arm-eabi-ar.exe
 OBJCOPY := $(TOOLCHAIN_ROOT)/bin/arm-eabi-objcopy.exe
 
 #Additional flags
-PREPROCESSOR_MACROS += ARM_MATH_CM4 STM32F303K8 stm32_flash_layout STM32F303x8
-INCLUDE_DIRS += . $(BSP_ROOT)/STM32F3xxxx/STM32F3xx_HAL_Driver/Inc $(BSP_ROOT)/STM32F3xxxx/STM32F3xx_HAL_Driver/Inc/Legacy $(BSP_ROOT)/STM32F3xxxx/CMSIS_HAL/Device/ST/STM32F3xx/Include $(BSP_ROOT)/STM32F3xxxx/CMSIS_HAL/Include
+PREPROCESSOR_MACROS += ARM_MATH_CM4 STM32L432KC stm32_flash_layout STM32L432xx
+INCLUDE_DIRS += . $(BSP_ROOT)/STM32L4xxxx/STM32L4xx_HAL_Driver/Inc $(BSP_ROOT)/STM32L4xxxx/STM32L4xx_HAL_Driver/Inc/Legacy $(BSP_ROOT)/STM32L4xxxx/CMSIS_HAL/Device/ST/STM32L4xx/Include $(BSP_ROOT)/STM32L4xxxx/CMSIS_HAL/Include
 LIBRARY_DIRS += 
 LIBRARY_NAMES += 
 ADDITIONAL_LINKER_INPUTS += 
@@ -29,5 +29,5 @@ CXXFLAGS +=
 ASFLAGS += -mfpu=fpv4-sp-d16
 LDFLAGS +=  
 COMMONFLAGS += -mcpu=cortex-m4 -mthumb -mfloat-abi=hard
-LINKER_SCRIPT := $(BSP_ROOT)/STM32F3xxxx/LinkerScripts/STM32F303K8_flash.lds
+LINKER_SCRIPT := $(BSP_ROOT)/STM32L4xxxx/LinkerScripts/STM32L432KC_flash.lds
 

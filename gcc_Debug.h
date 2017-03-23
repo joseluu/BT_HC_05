@@ -122,9 +122,6 @@
 #ifndef __cpp_variadic_templates
 #define __cpp_variadic_templates 200704
 #endif
-#ifndef STM32F303K8
-#define STM32F303K8 1
-#endif
 #ifndef __UINT_FAST64_MAX__
 #define __UINT_FAST64_MAX__ 0xffffffffffffffffULL
 #endif
@@ -326,9 +323,6 @@
 #ifndef __LFRACT_EPSILON__
 #define __LFRACT_EPSILON__ 0x1P-31LR
 #endif
-#ifndef STM32F303x8
-#define STM32F303x8 1
-#endif
 #ifndef __ULFRACT_MIN__
 #define __ULFRACT_MIN__ 0.0ULR
 #endif
@@ -474,6 +468,9 @@
 #endif
 #ifndef __ULACCUM_MAX__
 #define __ULACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULK
+#endif
+#ifndef STM32L432KC
+#define STM32L432KC 1
 #endif
 #ifndef __cpp_rvalue_reference
 #define __cpp_rvalue_reference 200610
@@ -645,6 +642,9 @@
 #endif
 #ifndef __UINT_LEAST16_TYPE__
 #define __UINT_LEAST16_TYPE__ short unsigned int
+#endif
+#ifndef STM32L432xx
+#define STM32L432xx 1
 #endif
 #ifndef __INT16_MAX__
 #define __INT16_MAX__ 0x7fff
@@ -1182,10 +1182,10 @@
 // --- Include directories begin --- //
 //Inc
 //.
-//$(LOCALAPPDATA)\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32/STM32F3xxxx/STM32F3xx_HAL_Driver/Inc
-//$(LOCALAPPDATA)\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32/STM32F3xxxx/STM32F3xx_HAL_Driver/Inc/Legacy
-//$(LOCALAPPDATA)\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32/STM32F3xxxx/CMSIS_HAL/Device/ST/STM32F3xx/Include
-//$(LOCALAPPDATA)\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32/STM32F3xxxx/CMSIS_HAL/Include
+//$(LOCALAPPDATA)\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32/STM32L4xxxx/STM32L4xx_HAL_Driver/Inc
+//$(LOCALAPPDATA)\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32/STM32L4xxxx/STM32L4xx_HAL_Driver/Inc/Legacy
+//$(LOCALAPPDATA)\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32/STM32L4xxxx/CMSIS_HAL/Device/ST/STM32L4xx/Include
+//$(LOCALAPPDATA)\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32/STM32L4xxxx/CMSIS_HAL/Include
 //c:\sysgcc\arm-eabi\bin\../lib/gcc/arm-eabi/6.2.0/../../../../arm-eabi/include/c++/6.2.0
 //c:\sysgcc\arm-eabi\bin\../lib/gcc/arm-eabi/6.2.0/../../../../arm-eabi/include/c++/6.2.0/arm-eabi/thumb/fpu/cortex_m4
 //c:\sysgcc\arm-eabi\bin\../lib/gcc/arm-eabi/6.2.0/../../../../arm-eabi/include/c++/6.2.0/backward

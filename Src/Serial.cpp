@@ -46,12 +46,12 @@ char *  SerialInput::fgetsNonBlocking(char * str, int size)
 	int sizeUseful;
 	if ((driverBufferNextChar - driverBuffer) >= size) {
 		sizeUseful = size - 1;
-		strncpy(driverBuffer, str, sizeUseful);
+		strncpy(str, driverBuffer, sizeUseful);
 		str[sizeUseful] = 0;
 		goto cleanup;
 	} else {
 		sizeUseful = driverBufferNextChar - driverBuffer;
-		strncpy(driverBuffer, str, sizeUseful);
+		strncpy(str, driverBuffer, sizeUseful);
 		str[sizeUseful] = 0;
 	}
 cleanup:
@@ -73,7 +73,9 @@ void SerialInput::doInputIT(void)
 			eol = true;
 		}
 	}
-
+	if (HAL_UART_Receive_IT(pHandle, (uint8_t *)inputBuffer, sizeof(inputBuffer)) != HAL_OK) {
+		Error_Handler();
+	}
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 {
