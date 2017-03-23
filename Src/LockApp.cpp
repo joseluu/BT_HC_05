@@ -46,10 +46,16 @@ void simpleTalk(){
 	char strBT[50];
 	char strConsole[50];
 	while (1){
-		if (pSerialInFromBlueTooth->fgetsNonBlocking(strBT, 50)) {
+		if (pSerialInFromBlueTooth->fgetsNonBlocking(strBT, 48)) {
+			int len = strlen(strBT);
+			strBT[len++] = '\r';
+			strBT[len++] = '\0';
 			pSerialOutToConsole->putsNonBlocking(strBT);
 		}
-		if (pSerialInFromConsole->fgetsNonBlocking(strConsole, 50)) {
+		if (pSerialInFromConsole->fgetsNonBlocking(strConsole, 48)) {
+			int len = strlen(strConsole);
+			strConsole[len++] = '\r';
+			strConsole[len++] = '\0';
 			pSerialOutToBlueTooth->putsNonBlocking(strConsole);
 		}
 

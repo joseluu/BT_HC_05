@@ -17,7 +17,7 @@ SerialInput::SerialInput(UART_HandleTypeDef * pHandle, char * buffer, unsigned i
 	inputBuffer[0] = 0;
 	inputBuffer[1] = 0;
 
-	if (HAL_UART_Receive_IT(pHandle, (uint8_t *)inputBuffer, sizeof(inputBuffer)) != HAL_OK) {
+	if (HAL_UART_Receive_IT(pHandle, (uint8_t *)inputBuffer, 1) != HAL_OK) {
 		Error_Handler();
 	}
 	if (pHandle == &huart1) {
@@ -73,7 +73,7 @@ void SerialInput::doInputIT(void)
 			eol = true;
 		}
 	}
-	if (HAL_UART_Receive_IT(pHandle, (uint8_t *)inputBuffer, sizeof(inputBuffer)) != HAL_OK) {
+	if (HAL_UART_Receive_IT(pHandle, (uint8_t *)inputBuffer, 1) != HAL_OK) {
 		Error_Handler();
 	}
 }
@@ -120,9 +120,11 @@ bool SerialOutput::putsNonBlocking(char * str)
 		return false;
 	}
 	busy = true;
-	if (strlen(str) >= driverBufferSize) {
-	}
-	statusTransmit = HAL_UART_Transmit_IT(pHandle, (uint8_t*) str, strlen(str));
+	int len = strlen(str);
+//	if (strlen(str) >= driverBufferSize) {
+//	}
+
+	statusTransmit = HAL_UART_Transmit_IT(pHandle, (uint8_t*) str, len);
 	return statusTransmit;
 }
 
@@ -145,5 +147,13 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle)
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
+//  HAL_UART_ERROR_NONE      = 0x00,    /*!< No error            */
+//	HAL_UART_ERROR_PE        = 0x01,    /*!< Parity error        */
+//	HAL_UART_ERROR_NE        = 0x02,    /*!< Noise error         */
+//	HAL_UART_ERROR_FE        = 0x04,    /*!< frame error         */
+//	HAL_UART_ERROR_ORE       = 0x08,    /*!< Overrun error       */
+//	HAL_UART_ERROR_DMA       = 0x10,    /*!< DMA transfer error  */
+//	HAL_UART_ERROR_BUSY      = 0x20     /*!< Busy Error          */
+	static int nLastError = huart->ErrorCode;
 	Error_Handler();
 }
