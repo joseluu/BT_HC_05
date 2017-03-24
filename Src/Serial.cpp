@@ -67,11 +67,15 @@ void SerialInput::doInputIT(void)
 	if ((driverBufferNextChar - driverBuffer) >= driverBufferSize) {
 		overrun++;
 	} else {
-		*driverBufferNextChar++ = inputBuffer[0];
-		nChars++;
 		if (inputBuffer[0] == '\n') {
 			eol = true;
 		}
+		if (inputBuffer[0] == '\r') {
+			inputBuffer[0] = '\n';
+			eol = true;
+		}
+		*driverBufferNextChar++ = inputBuffer[0];
+		nChars++;
 	}
 	if (HAL_UART_Receive_IT(pHandle, (uint8_t *)inputBuffer, 1) != HAL_OK) {
 		Error_Handler();
