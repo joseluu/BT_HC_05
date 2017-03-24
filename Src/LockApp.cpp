@@ -54,7 +54,8 @@ void simpleTalk(){
 		}
 		if (pSerialInFromConsole->fgetsNonBlocking(strConsole, 48)) {
 			int len = strlen(strConsole);
-			strConsole[len++] = '\r';
+			strConsole[len-1] = '\r';
+			strConsole[len++] = '\n';
 			strConsole[len++] = '\0';
 			pSerialOutToBlueTooth->putsNonBlocking(strConsole);
 		}
