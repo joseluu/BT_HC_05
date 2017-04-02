@@ -30,8 +30,8 @@ public:
 class SerialOutput {
 public:
 	SerialOutput(UART_HandleTypeDef * pHandle, char * driverBuffer, unsigned int size);
-	bool puts(char * str);
-	bool putsNonBlocking(char * str);
+	bool puts(const char * str);
+	bool putsNonBlocking(const char * str);
 	void doOutputIT();
 
 	static SerialOutput * channel_1;

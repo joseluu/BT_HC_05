@@ -63,23 +63,44 @@ void simpleTalk(){
 	}
 }
 
+bool isLockOpen(void) {
+	bool bLockState = HAL_GPIO_ReadPin(LOCK_OPEN_GPIO_Port, LOCK_OPEN_Pin) == GPIO_PIN_SET;
+	return bLockState;
+}
 void LockApp(void){
 
 	InitializeSerial();
 	HAL_StatusTypeDef statusReceive;
 	HAL_StatusTypeDef statusTransmit;
 
-	simpleTalk();
+	//simpleTalk();
 	while (1){
 		char buffer[100];
-		statusReceive = HAL_UART_Receive(&huart1, (unsigned char*)buffer, 100, 1000);
-		if (statusReceive == HAL_OK) {
-			if (strstr("close",buffer) != NULL) {
-				lockClose();
-				statusTransmit = HAL_UART_Transmit(&huart1, (uint8_t*)"Lock is closed\n", 15, 1000);
-			} else if (strstr(buffer,"open") != NULL) {
-				lockOpen();
-				statusTransmit = HAL_UART_Transmit(&huart1, (uint8_t*)"Lock is open\n", 13, 1000);
+		if (pSerialInFromBlueTooth->fgetsNonBlocking(buffer, 98)) {
+			if (strstr(buffer, "close") != NULL) {
+				if (isLockOpen()) {
+					pSerialOutToBlueTooth->putsNonBlocking("Failure: Lock is open, must lower manually\n");
+				} else {
+					lockClose();
+					pSerialOutToBlueTooth->putsNonBlocking("Lock is has been closed\n");
+				}
+			} else if (strstr(buffer, "open") != NULL) {
+				if (isLockOpen()) {
+					pSerialOutToBlueTooth->putsNonBlocking("Lock is open already\n");
+				} else {
+					lockOpen();
+					pSerialOutToBlueTooth->putsNonBlocking("Lock has been opened, now press side button\n");
+				}
+			} else if (strstr(buffer, "state") != NULL) {
+				if (isLockOpen()) {
+					pSerialOutToBlueTooth->putsNonBlocking("Lock is open\n");
+				} else {
+					pSerialOutToBlueTooth->putsNonBlocking("Lock is closed\n");
+				}
+			} else if (strstr(buffer, "ID") != NULL) {
+				pSerialOutToBlueTooth->putsNonBlocking("0xbb7df185451d6f1aaada5066bcb254c7844911c3\n");
+			} else {
+				pSerialOutToBlueTooth->putsNonBlocking("?? meh ??\n");
 			}
 		}
 	}

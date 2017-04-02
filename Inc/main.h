@@ -45,10 +45,10 @@
 #define MCO_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_2
 #define VCP_TX_GPIO_Port GPIOA
-#define LOCK_M_Pin GPIO_PIN_11
-#define LOCK_M_GPIO_Port GPIOA
-#define LOCK_P_Pin GPIO_PIN_12
-#define LOCK_P_GPIO_Port GPIOA
+#define LOCK_P_Pin GPIO_PIN_0
+#define LOCK_P_GPIO_Port GPIOB
+#define LOCK_OPEN_Pin GPIO_PIN_12
+#define LOCK_OPEN_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
@@ -59,6 +59,8 @@
 #define LD3_GPIO_Port GPIOB
 #define BT_KEY_Pin GPIO_PIN_5
 #define BT_KEY_GPIO_Port GPIOB
+#define LOCK_M_Pin GPIO_PIN_7
+#define LOCK_M_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

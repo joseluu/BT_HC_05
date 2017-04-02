@@ -107,7 +107,7 @@ SerialOutput::SerialOutput(UART_HandleTypeDef * pHandle, char * driverBuffer, un
 	}
 }
 
-bool SerialOutput::puts(char * str){
+bool SerialOutput::puts(const char * str){
 	int statusTransmit;
 	busy = true;
 	if (strlen(str) >= driverBufferSize) {
@@ -117,7 +117,7 @@ bool SerialOutput::puts(char * str){
 	return statusTransmit;
 }
 
-bool SerialOutput::putsNonBlocking(char * str)
+bool SerialOutput::putsNonBlocking(const char * str)
 {
 	int statusTransmit;
 	if (busy) {
@@ -159,5 +159,5 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 //	HAL_UART_ERROR_DMA       = 0x10,    /*!< DMA transfer error  */
 //	HAL_UART_ERROR_BUSY      = 0x20     /*!< Busy Error          */
 	static int nLastError = huart->ErrorCode;
-	Error_Handler();
+	//Error_Handler();
 }
